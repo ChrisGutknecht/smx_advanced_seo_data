@@ -6,7 +6,8 @@ import os
 from google.cloud import storage
 import pymsteams
 
-# set your teams webhook url here. Ask your admins how to set up or google it
+# Set your teams webhook url here. Ask your admins how to set up or google it
+# You can also reference this value as a secret via Secret Manager. This is preferred, but more advanced to set up
 webhook = 'https://company.webhook.office.com/webhookb2/13242343@213455/IncomingWebhook/12345/12345'
 
 # Your GCP project_id
