@@ -1,6 +1,6 @@
 ## 1. How to set up the 404 live alerts table in BigQuery
 
-* If not using a framework like dbt or Dataform, create a view table with the SQL code from the file <code>ga4_pageviews_404_live.sql</code> in this folder, and simply name it <code>ga4_pageviews_404_live</code>.
+* If not using a framework like dbt or Dataform, create a view table with the SQL code from the file <code>ga4_pageviews_404_live.sql</code> in this folder, and simply name it <code>ga4_pageviews_404_live</code>. The schema should be auto-created when you save the view table.
 * Query the new table with a <code>select * </code> to make sure it runs correctly.
 
 ## 2. How to deploy this cloud function (via the UI)
