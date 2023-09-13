@@ -1,6 +1,7 @@
 ## 1. How to set up the sitemap table in BigQuery
 
-*  Create a an empty, date partitioned table with the following schema and name it according to your country sitemap, for instance <code>sitemap_de_daily</code>:
+*  Create a an empty, date partitioned table and name it according to your country sitemap, for instance <code>sitemap_de_daily</code>.
+* Use the following schema in the text editor: 
 ```
 date: DATE,
 url: STRING,
@@ -27,7 +28,6 @@ image_url_first: STRING
 ```
 pandas-gbq
 advertools
-google-cloud-bigquery
 python-dateutil
 pandas
 DateTime

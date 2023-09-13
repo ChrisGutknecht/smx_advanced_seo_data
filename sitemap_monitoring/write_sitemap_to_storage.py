@@ -46,15 +46,12 @@ def save_sitemap_to_storage(request):
         return ("JSON Error", 400)
 
     sitemap_url = request_json.get('sitemap_url')
-    country_string = request_json.get('country_string')
     full_table_name = request_json.get('full_table_name')
-
 
     # Fetch the sitemap via advertools and convert to a dataframe
     sitemap_df = sitemap_to_df(sitemap_url)
     
     # column transformations
-    sitemap_df['sitemap_name'] = sitemap_df.apply(lambda row: get_sitemap_name(row.sitemap, country_string), axis=1)
     date_today = datetime.strftime(datetime.now(), '%Y-%m-%d')
     sitemap_df.insert(0, 'date', date_today)
     sitemap_df['lastmod'] = sitemap_df.apply(lambda row: datetime.strftime(parse(str(row.lastmod).replace('NaT', str(date_today))), "%Y-%m-%d"), axis=1)
