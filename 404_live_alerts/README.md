@@ -1,14 +1,28 @@
 ## 1. How to set up the 404 live alerts table in BigQuery
 
-* If not using a framework like dbt, create a view table with SQL code from the file <code>ga4_pageviews_404_live.sql</code> and simply name it <code>ga4_pageviews_404_live</code>.
-* Query the new table with a <xode>select * </code> to make sure it runs correctly.
+* If not using a framework like dbt or Dataform, create a view table with the SQL code from the file <code>ga4_pageviews_404_live.sql</code> in this folder, and simply name it <code>ga4_pageviews_404_live</code>.
+* Query the new table with a <code>select * </code> to make sure it runs correctly.
 
 ## 2. How to deploy this cloud function (via the UI)
 
 * In your GCP project, navigate to cloud functions: <https://console.cloud.google.com/functions>
-* Create a cloud function named <code>check_ga4_live_events</code>
-* Choose <code>1st gen</code> as environment, <code>256 MB</code> for Memory and <code>540</code> as Timeout and leave all other default settings.
+* Create a cloud function with <code>1st gen</code> as environment
+* Set the **Function name** <code>check_ga4_live_events</code> and a region close to your location
+* For easier setup, set **Authentication** to <code>Allow unauthenticated invocations</code>. This allows for a simpler setup with less configuration. Since this cloud function only queries data, it is not as sensitive.
+* Set <code>256 MB</code> for Memory and <code>540</code> as Timeout and leave all other default settings.
 * Make sure your runtime service account has the necessary permissions or the see execution errors for instructions if any are missing.
+
+* In the code section, set the **Runtime** to <code>Python 3.11</code> (September 2023).
+* Set the **Entry point** to <code>check_live_ga4_events</code>. This cloud function can be reused for different GA4 alerts like page view or transaction events by just pointing to different table names.
+* In the <code>requirements.txt</code>, add the following packages. These will be installed via the pip package manager.
+```
+
+google-cloud-storage
+pandas
+pandas-gbq
+requests
+pymsteams
+```
 
 ## 3. How to set up a schedule for the cloud function
 Next, navigate to Cloud scheduler to invoke this cloud function regularly: <https://console.cloud.google.com/cloudscheduler>.
