@@ -14,6 +14,7 @@
 
 * In the code section, set the **Runtime** to <code>Python 3.11</code> (September 2023).
 * Set the **Entry point** to <code>check_live_ga4_events</code>. This cloud function can be reused for different GA4 alerts like page view or transaction events by just pointing to different table names.
+* Add the Python code from the file <code>get_404_live_events.py</code> to the file <code>main.py</code>.
 * In the <code>requirements.txt</code>, add the following packages. These will be installed via the pip package manager.
 ```
 
@@ -23,6 +24,7 @@ pandas-gbq
 requests
 pymsteams
 ```
+* Hit the deploy button as final setup. To test the cloud function, you need a <code>POST</code> payload, see the scheduler section below.
 
 ## 3. How to set up a schedule for the cloud function
 Next, navigate to Cloud scheduler to invoke this cloud function regularly: <https://console.cloud.google.com/cloudscheduler>.
