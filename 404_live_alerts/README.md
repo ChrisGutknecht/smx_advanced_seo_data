@@ -1,23 +1,30 @@
+# How to set up the 404 live alerts table in BigQuery
+
+* If not using a framework like dbt, create a view table with SQL code from the file <code>ga4_pageviews_404_live_overall.sql</code>
+
 # How to deploy this cloud function via the UI
 
 * In your GCP project, navigate to cloud functions: <https://console.cloud.google.com/functions>
-
 
 Next, navigate to Cloud scheduler to invoke this cloud function regularly: <https://console.cloud.google.com/cloudscheduler>. 
 
 For the scheduler job configuration:
 
-* set the cron schedule to this example configuration:
-```
-0 7-23 * * *
-```
+* set the cron schedule to this example configuration: <code>0 7-23 * * *</code>
 * Set **Target Type** to <code>HTTP</code>.
 * Copy the cloud function **URL** from the trigger tab to the URL field
 * Set the **HTTP method** to <code>POST</code>.
-* In the **HTTP method** section section,
-    set <code>Content-Type</code> to
-    and 
-
+* In the **HTTP method** section section,set <code>Content-Type</code> to <code>application/json</code>
+* the **Body** represents this <code>POST</code> payload and should look like this. M
+```
+ {
+    "time_frame_min" : 120,
+    "max_event_threshold" : 70,
+    "table_name" : "alerts_ga4_pageviews_404_live_overall",
+    "message_title_prefix" : "GA4 LiveAlerts | 404 Page View Alert in Overall for last ",
+    "message_text_prefix" : "High 404 Events! More details at https://lookerstudio.google.com/s/YOUR_REPORT_URL |  Event count found : "
+} 
+```
 
 ## When does the job run and how?
 
