@@ -6,8 +6,11 @@ import os
 from google.cloud import storage
 import pymsteams
 
-webhook = 'https://bergzeit.webhook.office.com/webhookb2/b35916af-e12a-4e75-a43a-393fd2e7fce6@56c3a46a-d8d8-4536-b7df-55171d42be45/IncomingWebhook/9b5f10bae1904dbf93b7853dfc33bb57/f5223262-c679-413e-9ee1-526a5f7c4f14'
+# set your teams webhook url here. Ask your admins how to set up or google it
+webhook = 'https://company.webhook.office.com/webhookb2/13242343@213455/IncomingWebhook/12345/12345'
 
+# Your GCP project_id
+project_id = 'project_id'
 
 def check_live_ga4_events(request):
 
@@ -25,10 +28,9 @@ def check_live_ga4_events(request):
     max_event_threshold = request_json.get('max_event_threshold')
     message_title = request_json.get('message_title_prefix')
     message_text = request_json.get('message_text_prefix')
-    table_name = request_json.get('table_name')
+    full_table_name = request_json.get('full_table_name')
 
     # Preparing the query
-    full_table_name = 'bergzeit.dbt_alerts.' + table_name
     query = 'select * from ' + full_table_name
     
     # Executing the query
@@ -50,7 +52,7 @@ def check_live_ga4_events(request):
 
 def get_query_results(query):
     date = datetime.strftime(datetime.now(), '%Y%m%d')
-    df = pd.io.gbq.read_gbq(query, project_id='bergzeit') 
+    df = pd.io.gbq.read_gbq(query, project_id=project_id) 
     return df.shape[0]
 
 

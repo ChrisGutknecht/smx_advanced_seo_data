@@ -1,12 +1,14 @@
-# How to set up the 404 live alerts table in BigQuery
+# 1. How to set up the 404 live alerts table in BigQuery
 
-* If not using a framework like dbt, create a view table with SQL code from the file <code>ga4_pageviews_404_live_overall.sql</code>
+* If not using a framework like dbt, create a view table with SQL code from the file <code>ga4_pageviews_404_live.sql</code> and simply name it <code>ga4_pageviews_404_live</code>.
+* Query the new table with a <xode>select * </code> to make sure it runs correctly.
 
-# How to deploy this cloud function via the UI
+# 2. How to deploy this cloud function (via the UI)
 
 * In your GCP project, navigate to cloud functions: <https://console.cloud.google.com/functions>
 
-Next, navigate to Cloud scheduler to invoke this cloud function regularly: <https://console.cloud.google.com/cloudscheduler>. 
+# 3. How to set up a schedule for the cloud function
+Next, navigate to Cloud scheduler to invoke this cloud function regularly: <https://console.cloud.google.com/cloudscheduler>.
 
 For the scheduler job configuration:
 
@@ -15,21 +17,14 @@ For the scheduler job configuration:
 * Copy the cloud function **URL** from the trigger tab to the URL field
 * Set the **HTTP method** to <code>POST</code>.
 * In the **HTTP method** section section,set <code>Content-Type</code> to <code>application/json</code>
-* the **Body** represents this <code>POST</code> payload and should look like this. M
+* the **Body** represents this <code>POST</code> payload and should look like this. Set your parameters to your preferences and iterate to the right levels if necessary.
 ```
  {
     "time_frame_min" : 120,
     "max_event_threshold" : 70,
-    "table_name" : "alerts_ga4_pageviews_404_live_overall",
-    "message_title_prefix" : "GA4 LiveAlerts | 404 Page View Alert in Overall for last ",
+    "full_table_name" : "your_project.your_dataset.alerts_ga4_pageviews_404_live",
+    "message_title_prefix" : "GA4 LiveAlerts | 404 Page View Alert for last ",
     "message_text_prefix" : "High 404 Events! More details at https://lookerstudio.google.com/s/YOUR_REPORT_URL |  Event count found : "
 } 
 ```
-
-## When does the job run and how?
-
-The [daily cloud scheduler job in the "adsdataprediction" project](https://console.cloud.google.com/cloudscheduler/jobs/edit/europe-west1/get_awin_orders?project=adsdataprediction) triggers [a cloud function](https://console.cloud.google.com/functions/details/europe-west3/get_awin_orders?env=gen1&project=adsdataprediction) to store all Awin orders to Cloud Storage in one csv file per country.
-
-### How does the data land in BigQuery?
-
-TBD...The output dataframes are [directly written to BigQuery](https://console.cloud.google.com/bigquery?project=bergzeit&ws=!1m9!1m4!4m3!1sbergzeit!2sdbt_sea_analytics!3sgads_ads_for_url_check!1m3!3m2!1sadsdataprediction!2sawin&d=awin&p=adsdataprediction&page=dataset) via the to_gbq method.
+* Retry settings are optional and not necessary
