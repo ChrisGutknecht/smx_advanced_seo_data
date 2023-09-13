@@ -17,7 +17,6 @@
 * Add the Python code from the file <code>get_404_live_events.py</code> to the file <code>main.py</code>.
 * In the <code>requirements.txt</code>, add the following packages. These will be installed via the pip package manager.
 ```
-
 google-cloud-storage
 pandas
 pandas-gbq
@@ -27,7 +26,7 @@ pymsteams
 * Hit the deploy button as final setup. To test the cloud function, you need a <code>POST</code> payload, see the scheduler section below.
 
 ## 3. How to set up a schedule for the cloud function
-Next, navigate to Cloud scheduler to invoke this cloud function regularly: <https://console.cloud.google.com/cloudscheduler>.
+Navigate to Cloud scheduler to invoke this cloud function regularly: <https://console.cloud.google.com/cloudscheduler>.
 
 For the scheduler job configuration:
 
@@ -47,3 +46,4 @@ For the scheduler job configuration:
 } 
 ```
 * Retry settings are optional and not necessary
+* Test your scheduler and cloud function setup by executing a force run of the scheduler.
