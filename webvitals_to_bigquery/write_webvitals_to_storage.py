@@ -17,6 +17,15 @@ dataset_name = 'your_dataset'
 table_name = 'pagespeed_api_metrics'
 full_table_name = dataset_name + '.' + table_name
 
+# set the country 
+country = 'DE'
+
+# Retrieve your pagespeed API key from the cloud console: 
+# https://developers.google.com/speed/docs/insights/v5/get-started#APIKey
+# You should reference private keys via secret manager, via adding the value as a secret
+api_key = 'sdfsfsdfff'
+
+
 table_schema = [
     {'name':'date', 'type':'DATE'},
     {'name':'country', 'type':'STRING'},
@@ -96,11 +105,6 @@ comp_urls_3 = {
     'Magazin' : 'https://www.zalando-lounge.de/magazine/party-outfit-winter/#/',
     'Produktdetail' : 'https://www.zalando.de/levis-plus-graphic-way-back-tee-langarmshirt-black-l0m21d02s-q11.html'
 }
-
-country = 'DE'
-
-# You should reference private keys via secret manager, via adding the value as a secret
-api_key = 'sdfsfsdfff'
 
 
 def save_pagespeed_metrics(request): 

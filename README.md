@@ -1,9 +1,5 @@
-# smx_advanced_seo_data
-
 
 #  Welcome to this SEO Analytics repository! (by Bergzeit)
-
-## High-level description: What is this repository about?
 
 This repo contains all the data pipeline code shown at SMX Advanced EU 2023. It contains implementation details for four data products, as shown in the session: 
 * a 404 live alert on GA4 data, executed via a cloud function
@@ -13,6 +9,8 @@ This repo contains all the data pipeline code shown at SMX Advanced EU 2023. It 
 
 For an introduction, reference this SMX Advanced deck:
 https://www.slideshare.net/ChristopherGutknecht/
+
+<img width="266" alt="smx_advanced_seo" src="https://user-images.githubusercontent.com/6991865/267740117-46800627-64a3-4f20-a5f7-013d192d15ef.png">
 
 
 ---
