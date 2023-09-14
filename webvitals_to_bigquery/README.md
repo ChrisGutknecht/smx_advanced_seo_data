@@ -60,3 +60,20 @@ For the scheduler job configuration:
 * Set the **HTTP method** to <code>GET</code>.
 * Retry settings are optional
 * Test your scheduler and cloud function setup by executing a force run of the scheduler.
+
+## 4. How to set up MS Teams alerts for changes in business metrics?
+
+- This implementation is based on Google Cloud, BigQuery and the dbt framework
+- For an introduction to the dbt framework, see here: https://www.getdbt.com/blog/what-exactly-is-dbt/
+- To get startetd with *dbt cloud* (recommended for beginners), see here: https://docs.getdbt.com/docs/get-started/dbt-cloud-features
+
+### 4.1 Set up your dbt tests
+
+- When building your models in dbt, you can set up tests for these model and their columns: https://docs.getdbt.com/docs/build/tests
+- You can run these tests daily with the <code>dbt test</code> or <code>dbt run</code> to execute these tests, either in dbt cloud or in a custom cloud Python runtime like Apache Airflow or Google Cloud Run
+- To create test summaries of multiple tests and send them MS Teams, you need to run a dbt macro called <code>{{ store_test_results() }}</code>. This macro needs to be added to the <code>on-run-end</code> operation in your <code>dbt_project.yml</code> file. See also this tutorial: https://www.getdbt.com/blog/dbt-live-apac-tracking-dbt-test-success
+```
+on-run-end: 
+  - “{{ store_test_results(results) }}”
+```
+- When these test results are stored in BigQuery, build a log sink for updates on this table. 
