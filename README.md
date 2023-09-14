@@ -23,3 +23,7 @@ https://www.slideshare.net/ChristopherGutknecht/
 - For an introduction to the dbt framework, see here: https://www.getdbt.com/blog/what-exactly-is-dbt/
 - To learn the necessary fundamentals of dbt, see this course: https://courses.getdbt.com/courses/fundamentals
 - To get startetd with *dbt cloud* (recommended for beginners), see here: https://docs.getdbt.com/docs/get-started/dbt-cloud-features
+
+## How do I set up MS Teams alerts for business events, like CLS changes? 
+
+Check the **webvitals_to_bigquery** Folder and the <code>README.md</code> file.
