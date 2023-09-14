@@ -61,7 +61,7 @@ For the scheduler job configuration:
 * Retry settings are optional
 * Test your scheduler and cloud function setup by executing a force run of the scheduler.
 
-## 4. How to set up MS Teams alerts for changes in business metrics?
+## 4. How to set up MS Teams alerts for changes in business metrics? (ADVANCED)
 
 - This implementation is based on Google Cloud, BigQuery and the dbt framework
 - For an introduction to the dbt framework, see here: https://www.getdbt.com/blog/what-exactly-is-dbt/
@@ -76,4 +76,7 @@ For the scheduler job configuration:
 on-run-end: 
   - “{{ store_test_results(results) }}”
 ```
-- When these test results are stored in BigQuery, build a log sink for updates on this table. 
+- When these test results are stored in BigQuery, use a **Create Sink** for updates on this table via the **Logs Explorer** UI: https://console.cloud.google.com/logs/query
+- In the **Logs Router Sink**, create a new sink with <code>Cloud Pub/Sub Topic</code> as a **Sink destination**.
+- This PubSub topic should trigger a **cloud function** which then queries the dbt test result table. 
+- The cloud function code is can be shared upon request. It maps the test results from a specific dbt job to a Teams channel, converts the SQL result to a dataframe and displays it via <code>to_html()</code> and adds a couple of HTML elements via the <code>pymsteams</code> Python package.
