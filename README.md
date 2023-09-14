@@ -17,7 +17,7 @@ https://www.slideshare.net/ChristopherGutknecht/
 
 ## Prerequisites: Which skills and tools do I need to implement this framework?
 
-- You a Google Cloud Account with a valid billing account
+- You need a Google Cloud Account with a valid billing account
 - You need to know how to deploy Python cloud function in GCP
 - You need a working *knowledge of SQL* (or a data team) and basic BigQuery skills
 - For an introduction to the dbt framework, see here: https://www.getdbt.com/blog/what-exactly-is-dbt/

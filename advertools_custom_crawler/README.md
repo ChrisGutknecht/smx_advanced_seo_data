@@ -1,9 +1,4 @@
-
-
-https://console.cloud.google.com/vertex-ai/workbench
-
-
-## 1. How to set up the sitemap table in BigQuery
+## 1. How to set up the seo crawl table in BigQuery
 
 *  Create a an empty, date partitioned table and name it according to your country sitemap, for instance <code>sitemap_de_daily</code>.
 * Use the following schema in the text editor: 
