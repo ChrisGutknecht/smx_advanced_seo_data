@@ -25,5 +25,5 @@ image_url_first: STRING
 
 ## 3. How to set up a schedule for the notebook
 
-* When the notebook is running and you're in the Jupyter UI, run a small test of max 100 URLs by setting <code>CLOSESPIDER_PAGECOUNT</code> to <code>100</code>. 
+* When the notebook is running and you're in the Jupyter UI, run a small test of max 100 URLs by setting <code>CLOSESPIDER_PAGECOUNT</code> to <code>100</code>.
 * When this runs correctly, set a one-time execution in the Execute control panel. ONLY when this crawl runs correctly, set a weekly or regular schedule.
